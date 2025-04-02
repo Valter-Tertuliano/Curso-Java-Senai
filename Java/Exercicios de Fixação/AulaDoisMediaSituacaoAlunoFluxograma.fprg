@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="AulaDoisMediaSituacaoAlunoFluxograma"/>
+        <attribute name="authors" value="valte"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-04-01 06:38:32 "/>
+        <attribute name="created" value="dmFsdGU7VkFMVEVSU0VSR0lPOzIwMjUtMDQtMDE7IjAxOjEyOjQ4ICI7MjY0NA=="/>
+        <attribute name="edited" value="dmFsdGU7VkFMVEVSU0VSR0lPOzIwMjUtMDQtMDE7IjA2OjM4OjMyICI7MTsyNzU4"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n1, n2, n3, recuperacao" type="Integer" array="False" size=""/>
+            <declare name="media" type="Real" array="False" size=""/>
+            <output expression="&quot;Informe a 1&#176; Nota do aluno: &quot;" newline="True"/>
+            <input variable="n1"/>
+            <if expression="n1 &lt; 0 || n1 &gt; 10">
+                <then>
+                    <output expression="&quot;1&#176; Nota fora do intervalo v&#225;lido !!!&quot;" newline="True"/>
+                    <breakpoint expression="" always="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Informe a 2&#176; Nota do aluno: &quot;" newline="True"/>
+                    <input variable="n2"/>
+                    <if expression="n2 &lt; 0 || n2 &gt; 10">
+                        <then>
+                            <output expression="&quot;2&#176; Nota fora do intervalo v&#225;lido !!!&quot;" newline="True"/>
+                            <breakpoint expression="" always="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Informe a 3&#176; Nota do aluno: &quot;" newline="True"/>
+                            <input variable="n3"/>
+                            <if expression="n3 &lt; 0 || n3 &gt; 10">
+                                <then>
+                                    <output expression="&quot;3&#176; Nota fora do intervalo v&#225;lido !!!&quot;" newline="True"/>
+                                    <breakpoint expression="" always="True"/>
+                                </then>
+                                <else/>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <output expression="&quot;Calculando a M&#233;dia do Aluno&quot;" newline="True"/>
+            <assign variable="media" expression="(n1 + n2 + n3) / 3"/>
+            <if expression="media &gt;= 6">
+                <then>
+                    <output expression="&quot;O Aluno est&#225; aprovado com a m&#233;dia: &quot; &amp;media" newline="True"/>
+                    <breakpoint expression="" always="True"/>
+                </then>
+                <else>
+                    <if expression="media &lt; 6 || media &gt; 3">
+                        <then>
+                            <if expression="media &lt;= 3">
+                                <then>
+                                    <output expression="&quot;O aluno est&#225; Reprovado com m&#233;dia: &quot;&amp;media" newline="True"/>
+                                    <breakpoint expression="" always="True"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;O aluno est&#225; em Recupera&#231;&#227;o com a m&#233;dia: &quot; &amp;media" newline="True"/>
+                                    <output expression="&quot;Informe a nota de recupera&#231;&#227;o&quot;" newline="True"/>
+                                    <output expression="&quot;A nota deve estar entre 0 e 10!!!&quot;" newline="True"/>
+                                    <input variable="recuperacao"/>
+                                    <if expression="recuperacao &lt; 0 || recuperacao &gt; 10">
+                                        <then>
+                                            <output expression="&quot;Nota de RECUPERA&#199;&#195;O fora do intervalo v&#225;lido !!!&quot;" newline="True"/>
+                                            <breakpoint expression="" always="True"/>
+                                        </then>
+                                        <else>
+                                            <if expression="recuperacao &gt; 5">
+                                                <then>
+                                                    <output expression="&quot;Aluno aprovado, nota de recupera&#231;&#227;o: &quot;&amp;recuperacao" newline="True"/>
+                                                    <breakpoint expression="" always="True"/>
+                                                </then>
+                                                <else>
+                                                    <output expression="&quot;Aluno reprovado nota final: &quot;&amp;recuperacao" newline="True"/>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </then>
+                        <else/>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
