@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="ClassificacaoDeAtleta"/>
+        <attribute name="authors" value="valte"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-04-02 09:21:08 "/>
+        <attribute name="created" value="dmFsdGU7VkFMVEVSU0VSR0lPOzIwMjUtMDQtMDI7IjA4OjU2OjQ5ICI7MjY2MQ=="/>
+        <attribute name="edited" value="dmFsdGU7VkFMVEVSU0VSR0lPOzIwMjUtMDQtMDI7IjA5OjIxOjA4ICI7MTsyNzU3"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="t1, t2, t3, media" type="Integer" array="False" size=""/>
+            <output expression="&quot;Os tempos informados devem ser maior que ZERO, caso contrario o programa ser&#225; suspenso&quot;" newline="True"/>
+            <output expression="&quot;Informe o 1&#176; tempo do atleta &quot;" newline="True"/>
+            <input variable="t1"/>
+            <if expression="t1 &gt;= 0">
+                <then/>
+                <else>
+                    <output expression="&quot;Informe um tempo maior que zero !!!&quot;" newline="True"/>
+                    <breakpoint expression="" always="True"/>
+                </else>
+            </if>
+            <output expression="&quot;Informe o 2&#176; tempo do atleta &quot;" newline="True"/>
+            <input variable="t2"/>
+            <if expression="t2 &gt;= 0">
+                <then/>
+                <else>
+                    <output expression="&quot;Informe um tempo maior que zero !!!&quot;" newline="True"/>
+                    <breakpoint expression="" always="True"/>
+                </else>
+            </if>
+            <output expression="&quot;Informe o 3&#176; tempo do atleta &quot;" newline="True"/>
+            <input variable="t3"/>
+            <if expression="t3 &gt;= 0">
+                <then/>
+                <else>
+                    <output expression="&quot;Informe um tempo maior que zero !!!&quot;" newline="True"/>
+                    <breakpoint expression="" always="True"/>
+                </else>
+            </if>
+            <assign variable="media" expression="(t1 + t2 + t3) / 3"/>
+            <output expression="&quot;O tempo m&#233;dio do atleta: &quot; &amp;media" newline="True"/>
+            <if expression="media &lt;= 10">
+                <then>
+                    <output expression="&quot;Atleta est&#225; na CATEGORIA: OURO&quot;" newline="True"/>
+                    <breakpoint expression="" always="True"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="media &gt; 10 &amp;&amp; media &lt;= 15">
+                <then>
+                    <output expression="&quot;Atleta est&#225; na CATEGORIA: PRATA&quot;" newline="True"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="media &gt; 15 &amp;&amp; media &lt;= 20">
+                <then>
+                    <output expression="&quot;Atleta est&#225; na CATEGORIA: BRONZE&quot;" newline="True"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="media &gt; 20">
+                <then>
+                    <output expression="&quot;Atleta est&#225; DESCLASSIFICADO&quot;" newline="True"/>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
