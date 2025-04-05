@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="AulaTresLoginComBloqueio"/>
+        <attribute name="authors" value="valte"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-04-05 03:29:01 "/>
+        <attribute name="created" value="dmFsdGU7VkFMVEVSU0VSR0lPOzIwMjUtMDQtMDQ7IjAzOjE2OjQ2ICI7MjY1MQ=="/>
+        <attribute name="edited" value="dmFsdGU7VkFMVEVSU0VSR0lPOzIwMjUtMDQtMDU7IjAzOjI5OjAxICI7MjsyNzU2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="usuarioCadastrado, senhaCadastrada, obterUsuario, obterSenha, perguntaCadastrada, respostaCadastrada, obterResposta" type="String" array="False" size=""/>
+            <declare name="tentativasRestantes" type="Integer" array="False" size=""/>
+            <assign variable="usuarioCadastrado" expression="&quot;valter&quot;"/>
+            <assign variable="senhaCadastrada" expression="&quot;1234&quot;"/>
+            <assign variable="perguntaCadastrada" expression="&quot;2x - 5 = 5&quot;"/>
+            <assign variable="respostaCadastrada" expression="&quot;5&quot;"/>
+            <declare name="usuarioIndentificado" type="Boolean" array="False" size=""/>
+            <declare name="acessoLiberado" type="Boolean" array="False" size=""/>
+            <assign variable="usuarioIndentificado" expression="false"/>
+            <assign variable="acessoLiberado" expression="false"/>
+            <assign variable="tentativasRestantes" expression="3"/>
+            <while expression="usuarioIndentificado != true">
+                <output expression="&quot;Informe o nome de us&#250;ario: &quot;" newline="True"/>
+                <input variable="obterUsuario"/>
+                <if expression="obterUsuario == usuarioCadastrado">
+                    <then>
+                        <output expression="&quot;Usuario Indentificado&quot;" newline="True"/>
+                        <assign variable="usuarioIndentificado" expression="true"/>
+                    </then>
+                    <else>
+                        <output expression="&quot;Usuario n&#227;o indentificado&quot;" newline="True"/>
+                        <assign variable="tentativasRestantes" expression="tentativasRestantes - 1"/>
+                        <if expression="tentativasRestantes &gt; 0">
+                            <then>
+                                <output expression="&quot;Tentativas restantes: &quot; &amp;tentativasRestantes" newline="True"/>
+                            </then>
+                            <else>
+                                <output expression="&quot;Tentativas Insuficientes&quot;" newline="True"/>
+                                <breakpoint expression="" always="True"/>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </while>
+            <while expression="acessoLiberado != true">
+                <output expression="&quot;Informe a senha &quot; &amp;obterUsuario" newline="True"/>
+                <input variable="obterSenha"/>
+                <if expression="obterSenha == senhaCadastrada">
+                    <then>
+                        <output expression="&quot;Acesso liberado&quot;" newline="True"/>
+                        <assign variable="acessoLiberado" expression="true"/>
+                    </then>
+                    <else>
+                        <output expression="&quot;Senha invalida&quot;" newline="True"/>
+                        <assign variable="tentativasRestantes" expression="tentativasRestantes - 1"/>
+                        <if expression="tentativasRestantes &gt; 0">
+                            <then>
+                                <output expression="&quot;Tentativas restantes: &quot; &amp;tentativasRestantes" newline="True"/>
+                            </then>
+                            <else>
+                                <output expression="&quot;Tentativas Insuficientes&quot;" newline="True"/>
+                                <output expression="&quot;Pergunta de seguran&#231;a: &quot;&amp;perguntaCadastrada" newline="True"/>
+                                <input variable="obterResposta"/>
+                                <if expression="obterResposta == respostaCadastrada">
+                                    <then>
+                                        <output expression="&quot;Acesso Liberado&quot;" newline="True"/>
+                                        <assign variable="acessoLiberado" expression="true"/>
+                                    </then>
+                                    <else>
+                                        <output expression="&quot;Resposta invalida, Acesso Negado&quot;" newline="True"/>
+                                        <breakpoint expression="" always="True"/>
+                                    </else>
+                                </if>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </while>
+            <output expression="&quot;Bem vindo &quot; &amp;obterUsuario" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

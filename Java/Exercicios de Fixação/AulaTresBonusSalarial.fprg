@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="AulaTresBonusSalarial"/>
+        <attribute name="authors" value="valte"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-04-02 10:23:45 "/>
+        <attribute name="created" value="dmFsdGU7VkFMVEVSU0VSR0lPOzIwMjUtMDQtMDI7IjA5OjQwOjQ5ICI7MjY1NQ=="/>
+        <attribute name="edited" value="dmFsdGU7VkFMVEVSU0VSR0lPOzIwMjUtMDQtMDI7IjEwOjIzOjQ1ICI7MTsyNzUy"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="tempoServico, notaDesempenho, bonus" type="Integer" array="False" size=""/>
+            <declare name="salarioBase, salarioBonificado" type="Real" array="False" size=""/>
+            <output expression="&quot;Informe o S&#225;lario Base do funcion&#225;rio: &quot;" newline="True"/>
+            <input variable="salarioBase"/>
+            <if expression="salarioBase &lt;= 0">
+                <then>
+                    <output expression="&quot;S&#225;lario Informado &#233; inv&#225;lido !!!&quot;" newline="True"/>
+                    <breakpoint expression="" always="True"/>
+                </then>
+                <else/>
+            </if>
+            <output expression="&quot;Informe o Tempo de servi&#231;o do funcion&#225;rio em ANOS:&quot;" newline="True"/>
+            <input variable="tempoServico"/>
+            <if expression="tempoServico &gt; 0">
+                <then/>
+                <else>
+                    <output expression="&quot;Informe um Tempo de Servi&#231;o V&#225;lido&quot;" newline="True"/>
+                    <breakpoint expression="" always="True"/>
+                </else>
+            </if>
+            <output expression="&quot;Informe a Nota de Desempenho do funcion&#225;rio (0-10):&quot;" newline="True"/>
+            <input variable="notaDesempenho"/>
+            <if expression="notaDesempenho &lt; 0 || notaDesempenho &gt; 10">
+                <then>
+                    <output expression="&quot;Nota de Desempenho Inv&#225;lida, informe uma nota dentro do intervalo de 0 a 10&quot;" newline="True"/>
+                    <breakpoint expression="" always="True"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="tempoServico &lt; 3">
+                <then>
+                    <output expression="&quot;Tempo de servi&#231;o muito baixo, n&#227;o tem direito a B&#244;nus&quot;" newline="True"/>
+                    <assign variable="bonus" expression="0"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="tempoServico &gt;= 3 &amp;&amp; tempoServico &lt;= 5">
+                <then>
+                    <assign variable="bonus" expression="5"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="tempoServico &gt; 5">
+                <then>
+                    <assign variable="bonus" expression="10"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="notaDesempenho &lt; 4">
+                <then>
+                    <output expression="&quot;Desempenho do funcion&#225;rio muito baixo, sem direito a B&#244;nus&quot;" newline="True"/>
+                    <assign variable="salarioBonificado" expression="salarioBase"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="notaDesempenho &gt;= 4 &amp;&amp; notaDesempenho &lt;= 7">
+                <then>
+                    <assign variable="salarioBonificado" expression="salarioBase + (salarioBase * (bonus / 100))"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="notaDesempenho &gt; 7">
+                <then>
+                    <assign variable="bonus" expression="bonus + bonus"/>
+                    <assign variable="salarioBonificado" expression="salarioBase + (salarioBase * (bonus / 100))"/>
+                </then>
+                <else/>
+            </if>
+            <output expression="&quot;B&#244;nus Recebido: &quot; &amp;bonus" newline="True"/>
+            <output expression="&quot;Salario Base: &quot; &amp;salarioBase" newline="True"/>
+            <output expression="&quot;S&#225;lario Final: &quot; &amp;salarioBonificado" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
