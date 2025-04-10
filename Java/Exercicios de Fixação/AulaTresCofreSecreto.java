@@ -20,14 +20,17 @@ public class AulaTresCofreSecreto {
 
             // validar senha 
             if (obterSenha.equals(senhaCorreta)){
-            tentativasRestantes = 0;
-            acessoLiberado = true;
-            System.out.println("Acesso Liberado");
+                acessoLiberado = true; 
+                tentativasRestantes = 0;
         } else {
             System.out.println("Senha inválida");
             tentativasRestantes -= 1;
 
         }
+    }
+
+    if (acessoLiberado == true){
+        System.out.println("Acesso Liberado");
     }
     entrada.close();
 }
