@@ -27,19 +27,24 @@ public class GerenciadorDeLivrosJava {
     // Método para exibir os livros cadastrados
     public static void exibirLivros(String[][] matriz) {
         /*
-         * Método que exibe todos os livros cadastrados
-         * 
-         * Parâmetros:
-         *  matriz: vetor bidimensional contendo os dados dos livros
-         * 
-         * Retorno:
-         *  Nenhum (apenas imprime no terminal)
-         */
+        * Método que exibe todos os livros cadastrados
+        * 
+        * Parâmetros:
+        *  matriz: vetor bidimensional contendo os dados dos livros
+        * 
+        * Retorno:
+        *  Nenhum (apenas imprime no terminal)
+        */
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("    ------------------------ Registro de Livros Cadastrados ---------------------");
+        System.out.println("-------------------------------------------------------------------------------------\n");
         for (int i = 0; i < matriz.length; i++) {
             if (matriz[i][0] == null) {
-                System.out.println("----- FIM -----");
+                System.out.println("\t\t\t\t\t----- FIM -----");
+                System.out.println("------------------------------------------------------------------------------------- ");
                 break;
             } else {
+                System.out.println("-------------------------------------------------------------------------------------");
                 for (int j = 0; j < matriz[i].length; j++) {
                     System.out.print(" " + matriz[i][j] + " ");
                 }
@@ -62,7 +67,7 @@ public class GerenciadorDeLivrosJava {
          */
         System.out.printf("Informe %s: ", informacao);
         String resposta = scanner.nextLine();
-        return "| " + resposta.trim() + " ";
+        return "| " + resposta + " ";
     }
 
     // Método para obter e validar a data
@@ -78,8 +83,8 @@ public class GerenciadorDeLivrosJava {
          */
 
         String dataCompleta;
-
-        System.out.println("\n ---------- Obtendo Data de Publicação ----------\n");
+        System.out.println("------------------------------------------------------------------------------------- ");
+        System.out.println("\n\t\t----- Obtendo Data de Publicação -----\n");
 
         System.out.print("Digite o dia da publicação do livro (apenas dois números): ");
         int dia = scanner.nextInt();
@@ -105,7 +110,7 @@ public class GerenciadorDeLivrosJava {
             System.out.println("Ano informado está muito avançado, estamos em 2025 !!!");
             ano = 0;
         }
-
+        System.out.println("-------------------------------------------------------------------------------------");
         if (dia != 0 && mes != 0 && ano != 0) {
             dataCompleta = "| " + dia + "/" + mes + "/" + ano;
             return dataCompleta;
@@ -113,7 +118,7 @@ public class GerenciadorDeLivrosJava {
             return "Data Inválida";
         }
     }
-
+    
     // Método para o cadastro de livros
     public static void cadastrarLivro(String[][] matriz, Scanner scanner) {
         /*
@@ -126,7 +131,6 @@ public class GerenciadorDeLivrosJava {
          * Retorno:
          *  Nenhum (atualiza a matriz com os dados)
          */
-        System.out.println("\nLimite de Livros cadastrados: " + matriz.length);
 
         byte espacoLivre = 0;
         byte marcarIndice = 0;
@@ -139,18 +143,31 @@ public class GerenciadorDeLivrosJava {
                 }
             }
         }
-
-        System.out.println("Total de espaços disponíveis: " + espacoLivre);
-
-        if (espacoLivre > 0) {
-            System.out.print("\n ----- Iniciando Cadastro de Livro -----\n");
+        
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("|     ---->>>----->|<-----<<<->>>----->| Memória |<-----<<<->>>----->|<-----<<<     |");
+        System.out.println();
+        System.out.println("  |Limite de Armazenamento: " + matriz.length);
+        System.out.println("  |Espaço Livre: " + espacoLivre);
+        System.out.println();
+        System.out.println("|     ---->>>----->|<-----<<<->>>----->| Memória |<-----<<<->>>----->|<-----<<<     |");
+        System.out.println("-------------------------------------------------------------------------------------");
+        
+        // visualizar armazenamento 
+        if (espacoLivre > 0) 
+        {System.out.println("-------------------------------------------------------------------------------------");
+            System.out.print("\n\t\t ----- Iniciando Cadastro de Livro -----\n");
+            System.out.println();
             matriz[marcarIndice][0] = entradaUsuario(scanner, "o Título do Livro");
             matriz[marcarIndice][1] = entradaUsuario(scanner, "o Autor do Livro");
             matriz[marcarIndice][2] = obterData(scanner);
-            System.out.print(" ----- Cadastro de Livro Concluído -----\n");
+            System.out.print("----- Cadastro de Livro Concluído -----\n");
+            System.out.println("-------------------------------------------------------------------------------------");
         } else {
-            System.out.println("Infelizmente, não temos espaço disponível para adicionar mais livros.");
+            System.out.println("Infelizmente, não temos espaço disponível para adicionar mais livros. ");
+            System.out.println("------------------------------------------------------------------------------------- ");
         }
+        
     }
 
     // Método para buscar livros por autor
@@ -190,8 +207,10 @@ public class GerenciadorDeLivrosJava {
 
     // Método para excluir um livro pelo titulo
     public static String[][] excluirLivro(String[][] matriz, Scanner scanner){
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("\t\t\t------ Excluir Livro -----");
         String entrada = entradaUsuario(scanner, "titulo");
-        String tituloBuscado = entrada.toLowerCase().trim();
+        String tituloBuscado = entrada;
 
         // obter linhas
         int linhas = matriz.length;
@@ -202,15 +221,35 @@ public class GerenciadorDeLivrosJava {
         boolean encontrado = false;
 
         for (int i = 0; i < matriz.length; i++){
-            if (matriz[i][0] != null && matriz[i][0].equa)
+            if (matriz[i][0] != null && matriz[i][0].equalsIgnoreCase(tituloBuscado)){
+                encontrado = true;
+                continue;
+            } else {
+                for (int j = 0; j < matriz[i].length; j++){
+                    novaMatriz[i][j] = matriz[i][j];
+                }
+            }
         }
-
-
-        
-
         if (!encontrado) {
-            System.out.println("Autor não encontrado");
+            System.out.println("Titulo não encontrado");
+            System.out.println("------------------------------------------------------------------------------------- ");
+        } else {
+            System.out.println("Livro: " + tituloBuscado + " apagado com sucesso");
+            System.out.println("------------------------------------------------------------------------------------- ");
         }
+        return novaMatriz;
+    }
+
+    public static void exibirMenu(){
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("       ----     ---   ---   ----- Menu Principal -----   ---   ---     -----         ");
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println(" [ 1 ] CADASTRAR LIVRO");
+        System.out.println(" [ 2 ] EXCLUIR LIVRO");
+        System.out.println(" [ 3 ] BUSCAR AUTOR");
+        System.out.println(" [ 4 ] EXIBIR TODOS OS LIVROS");
+        System.out.println(" [ 0 ] SAIR");
+        System.out.println("-------------------------------------------------------------------------------------");
 
     }
 
@@ -237,6 +276,8 @@ public class GerenciadorDeLivrosJava {
         cadastrarLivro(livros, scanner);
         exibirLivros(livros);
         buscarAutor(livros, scanner);
+        livros = excluirLivro(livros, scanner);
+        exibirLivros(livros);
 
         scanner.close();
     }
